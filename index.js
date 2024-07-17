@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const Product = require('./models/productModel')
 const app = express()
+require('dotenv').config();
 
 app.use(express.json())
 
@@ -72,7 +73,7 @@ app.post('/product', async (req, res) => {
 })
 
 mongoose
-  .connect('mongodb+srv://wasakyletzeng:PvAnfeEbthVVu1xe@yaokuan.zdwxiwn.mongodb.net/Node-api?retryWrites=true&w=majority&appName=Yaokuan')
+  .connect(process.env.MONGO_URI)
   .then(() => {
     app.listen(3000, () => {
       console.log("Node api app is running in port 3000");
